@@ -90,8 +90,8 @@ const fetchMachine = createMachine({
 There are five different kinds of state nodes:
 
 - An **atomic** state node has no child states. (I.e., it is a leaf node.)
-- A **compound** state node contains one or more child `states`, and has an `initial` state, which is the key of one of those child states.
-- A **parallel** state node contains two or more child `states`, and has no initial state, since it represents being in all of its child states at the same time.
+- A **compound** state node contains one or more child `states` and has an `initial` state, which is the key of one of those child states.
+- A **parallel** state node contains two or more child `states` and has no initial state since it represents being in all of its child states at the same time.
 - A **final** state node is a leaf node that represents an abstract "terminal" state.
 - A **history** state node is an abstract node that represents resolving to its parent node's most recent shallow or deep history state.
 
@@ -174,7 +174,7 @@ Explicitly specifying the `type` as `'atomic'`, `'compound'`, `'parallel'`, `'hi
 
 A transient state node is a "pass-through" state node that immediately transitions to another state node; that is, a machine does not stay in a transient state. Transient state nodes are useful for determining which state the machine should really go to from a previous state based on conditions. They are most similar to [choice pseudostates](https://www.uml-diagrams.org/state-machine-diagrams.html#choice-pseudostate) in UML.
 
-The best way to define a transient state node is as an eventless state, and an `awlays` transition. This is a transition were the first condition that evaluates to true is immediately taken.
+The best way to define a transient state node is as an eventless state, and an `always transition. This is a transition where the first condition that evaluates to true is immediately taken.
 
 For example, this machine's initial transient state resolves to `'morning'`, `'afternoon'`, or `'evening'`, depending on what time it is (implementation details hidden):
 
