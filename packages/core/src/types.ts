@@ -855,10 +855,13 @@ export type StateFrom<
   T extends
     | StateMachine<any, any, any, any>
     | ((...args: any[]) => StateMachine<any, any, any, any>)
+    | ActorRef<any, any>
 > = T extends StateMachine<any, any, any>
   ? ReturnType<T['transition']>
   : T extends (...args: any[]) => StateMachine<any, any, any>
   ? ReturnType<ReturnType<T>['transition']>
+  : T extends ActorRef<any, infer TEmitted>
+  ? TEmitted
   : never;
 
 export interface ActionMap<TContext, TEvent extends EventObject> {
